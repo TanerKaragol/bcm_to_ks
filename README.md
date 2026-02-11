@@ -50,7 +50,7 @@ openssl passwd -6
 You will use hashed password output in kiskstart file.
 
 ## 4. Manual Node Registration
-PXE Configuration
+**PXE Configuration**
 
 Copy a BCM category template file with a new name and modify it for manual use:
 ```bash
@@ -76,7 +76,7 @@ Copy modified "default" file under tftp folder and make it unchangable (by BCM).
 ```bash
 cp /root/default /tftpboot/pxelinux.cfg/default && chattr +i /tftpboot/pxelinux.cfg/default
 ```
-DHCP & DNS (Manual)
+**DHCP & DNS (Manual)**
 
 Add unlicensed nodes to BCM-excluded config files:
 
@@ -104,5 +104,4 @@ PartitionName="cpu" Nodes=cn[01-20]
 # Notes & Known Issues
 
 * Slurmd Service: May require a one-time manual start after the first boot.
-* Drain State: If nodes appear as 'drain', use scontrol update nodename=cnX state=resume.
-* Optimization: If your BCM image doesn't use a separate /boot, you can simplify the Kickstart and skip the sed path replacements.
+* Optimization: If your dont want to create separete partition for /boot, you can simplify the Kickstart and skip the sed path replacements.
