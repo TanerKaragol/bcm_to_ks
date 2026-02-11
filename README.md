@@ -43,8 +43,11 @@ systemctl restart nfs-server
 
 Create /var/www/html/ks/bcm.ks. This file handles the partitioning and image cloning.
 Password Encryption
-
-To generate the hashed password for the Kickstart file: openssl passwd -6
+To generate the hashed password for the Kickstart file:
+```bash
+openssl passwd -6
+```
+You will use hashed password output in kiskstart file.
 
 ## 4. Manual Node Registration
 PXE Configuration
