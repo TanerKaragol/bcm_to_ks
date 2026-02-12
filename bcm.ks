@@ -39,10 +39,10 @@ nfs-utils
 rsync
 %end
 
-# Post-Install Script:
+# Post-Install Script Section:
 %post --nochroot
 LOGFILE="/mnt/sysimage/root/ks-post.log"
-echo "--- Post-Install Started: $(date) ---" >> "$LOGFILE" 2>&1
+echo "--- Post-Install Script Started: $(date) ---" >> "$LOGFILE" 2>&1
 
 # Mount Bright Image via NFS
 mkdir -p /mnt/sysimage/mnt/image >> "$LOGFILE" 2>&1
@@ -50,9 +50,14 @@ mount -t nfs -o nolock 192.168.122.254:/cm/images/default-image /mnt/sysimage/mn
 
 echo "---- Rsync Image to Target: $(date) ---" >> "$LOGFILE" 2>&1
 rsync -aH --no-xattrs --no-acls --delete \
-   --exclude=/etc/fstab --exclude=/mnt/* --exclude=/dev/* \
-   --exclude=/proc/* --exclude=/sys/* --exclude=/tmp/* \
-   --exclude=/run/* --exclude=/media/* \
+   --exclude=/etc/fstab \
+   --exclude=/mnt/* \
+   --exclude=/dev/* \
+   --exclude=/proc/* \
+   --exclude=/sys/* \
+   --exclude=/tmp/* \
+   --exclude=/run/* \
+   --exclude=/media/* \
    /mnt/sysimage/mnt/image/ /mnt/sysimage/ >> "$LOGFILE" 2>&1
 
 echo "---- Rsync Finished: $(date) ---" >> "$LOGFILE" 2>&1
@@ -97,7 +102,7 @@ sed -i "s|root=UUID=[0-9a-fA-F-]*|root=UUID=$NEW_ROOT_UUID|" "$GRUB_CFG_PATH" ||
 sed -i "s|resume=UUID=[0-9a-fA-F-]*|resume=UUID=$NEW_SWAP_UUID|" "$GRUB_CFG_PATH" || echo "ERROR: SED: 3. Step: resume" >> "$LOGFILE"
 
 # 4. BLS (Boot Loader Specification) entires:
-echo "BLS entiries new UUIDs..." >> "$LOGFILE" 2>&1
+echo "update UUIDs in BLS entry files..." >> "$LOGFILE" 2>&1
 for bls_file in "$BLS_ENTRIES_PATH"/*.conf; do
     if [ -f "$bls_file" ]; then
         echo "BLS files processing: $bls_file..." >> "$LOGFILE" 2>&1
@@ -109,7 +114,7 @@ for bls_file in "$BLS_ENTRIES_PATH"/*.conf; do
 done
 
 # 5. Removing 'inst.repo' parameter in GRUB files.
-# inst.repo releated to installation and may create problem in normall boot:
+# inst.repo releated to installation and may create problem in normal boot:
 echo " removing 'inst.repo' parameters in grub.cfg and BLS entry files..." >> "$LOGFILE" 2>&1
 sed -i "/inst.repo=/d" "$GRUB_CFG_PATH" || echo "ERROR: SED: 5. Step" >> "$LOGFILE"
 for bls_file in "$BLS_ENTRIES_PATH"/*.conf; do
@@ -135,7 +140,7 @@ chroot /mnt/sysimage <<EOF_CHROOT >> "$LOGFILE" 2>&1
     CURRENT_KERNEL_VERSION=$(ls -1 /lib/modules | head -n 1)
     /bin/dracut --force --verbose /boot/initramfs-${CURRENT_KERNEL_VERSION}.img ${CURRENT_KERNEL_VERSION}
 
-echo "----Fixing SLURM:----
+echo "----Fixing SLURM:----"
     mkdir -p /etc/systemd/system/slurmd.service.d/
     cat <<'EOF' > /etc/systemd/system/slurmd.service.d/override.conf
 [Unit]
@@ -157,7 +162,7 @@ RequiresMountsFor=/cm/shared
 After=network-online.target remote-fs.target
 EOF
 
-    # Slurmd servisi ENABLE
+    # Slurmd service ENABLE
     ln -s /usr/lib/systemd/system/slurmd.service /etc/systemd/system/multi-user.target.wants/slurmd.service
     # sync disks.
     sync
