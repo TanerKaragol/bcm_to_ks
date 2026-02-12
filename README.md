@@ -3,7 +3,7 @@
 If you need to leave BCM for any reason (license policy, price, etc.) or simply want to add new nodes without buying additional licenses, this guide explains how to migrate using **Kickstart**.
 
 ## Environment & Versions
-* **Virtualization:** KVM/QEMU
+* **Virtualization:** KVM/QEMU, Legacy (BIOS) boot
 * **OS Versions:** Rocky 9.2, Bright 9.2
 * **Existing Services:** We dont use new services for Kickstart. We will use BCM's PXE, DHCP, DNS, and TFTP to to keep envirement simple (KISS prinsible).
 * **BCM Server:** 192.168.122.254
