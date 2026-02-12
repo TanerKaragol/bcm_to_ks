@@ -6,7 +6,7 @@ If you need to leave BCM for any reason (license policy, price, etc.) or simply 
 * **Virtualization:** KVM/QEMU
 * **OS Versions:** Rocky 9.2, Bright 9.2
 * **Existing Services:** We dont use new services for Kickstart. We will use BCM's PXE, DHCP, DNS, and TFTP to to keep envirement simple (KISS prinsible).
-
+* **BMC Server:** 192.168.122.254
 ---
 
 ## 1. Key Challenges & Solutions
