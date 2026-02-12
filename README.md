@@ -44,7 +44,7 @@ systemctl restart nfs-server
 ---
 ## 3. Kickstart Configuration
 
-Copy bcm.ks here /var/www/html/ks/bcm.ks. Then modify it corresponding to your needs. For example disk device name, password.
+Copy bcm.ks in this location /var/www/html/ks/bcm.ks. Then modify it corresponding to your needs. For example disk device name, password, keyboard, timezone, BCM server IP address.
 For Password Encryption: To generate the hashed password for the Kickstart file:
 ```bash
 openssl passwd -6
