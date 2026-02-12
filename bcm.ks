@@ -90,7 +90,7 @@ echo "Swap UUID: $NEW_SWAP_UUID" >> "$LOGFILE" 2>&1
 GRUB_CFG_PATH="/mnt/sysimage/boot/grub2/grub.cfg"
 BLS_ENTRIES_PATH="/mnt/sysimage/boot/loader/entries"
 
-echo "GRUB is updating with new UUID..." >> "$LOGFILE" 2>&1
+echo "update UUIDs in GRUB_CFG_PATH..." >> "$LOGFILE" 2>&1
 
 # 1. grub.cfg: 'search --fs-uuid --set=root' line:
 sed -i "s|search --no-floppy --fs-uuid --set=root [0-9a-fA-F-]*|search --no-floppy --fs-uuid --set=root $NEW_ROOT_UUID|" "$GRUB_CFG_PATH" || echo "ERROR: SED: 1. Step" >> "$LOGFILE"
@@ -114,7 +114,7 @@ for bls_file in "$BLS_ENTRIES_PATH"/*.conf; do
     fi
 done
 
-# 5. Removing 'inst.repo' parameter in GRUB files.
+# 5. Removing 'inst.repo' parameter in GRUB_CF_PATH file.
 # inst.repo releated to installation and may create problem in normal boot:
 echo " removing 'inst.repo' parameters in grub.cfg and BLS entry files..." >> "$LOGFILE" 2>&1
 sed -i "/inst.repo=/d" "$GRUB_CFG_PATH" || echo "ERROR: SED: 5. Step" >> "$LOGFILE"
