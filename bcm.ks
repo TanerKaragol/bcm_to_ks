@@ -1,8 +1,7 @@
 # bcm.ks -- Rocky 9.2 Stateful Installation for BCM Migration
-# Generated for NVIDIA Bright Cluster Manager workaround
 
 # /boot partition is ext4, and added to /etc/fstab
-# slurm and munge services enabled
+# slurm and munge services fixed and enabled
 
 url --url="http://dl.rockylinux.org/vault/rocky/9.2/BaseOS/x86_64/os/"
 text
