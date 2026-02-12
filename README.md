@@ -16,6 +16,7 @@ If you need to leave BCM for any reason (license policy, price, etc.) or simply 
 * **Boot Partitioning:** If `/boot` partition exists, add `insmod xfs` or `insmod ext` in `grub.cfg`.
 * **Boot Partitioning:** If `/boot` partition exists, the path in BLS (.conf) files should not include `/boot/` (e.g., `/vmlinuz` instead of `/boot/vmlinuz`). We handle this with `sed`.
 * **Master Image:** We are still using BCM master image. You dont have to create seperate image for Kicskstart.
+* **$LOGFILE:** Modifiying configuration files (Post-install Script section) is very complex. I have used $LOGFILE to log every step. If anything goes wrong you can check $LOGFILE and you can add extra Steps to $LOGFILE.
 
 ---
 
@@ -116,4 +117,5 @@ Boot the new node with PXE boot. Select "New Node Install" from the menu.
 
 * Slurmd Service: May require a one-time manual start after the first boot.
 * Optimization: If your dont want to create separete partition for /boot, you can simplify the Kickstart and skip the sed path replacements.
-* SLURM: If SLURM is managed by BMC, you cant add new nodes to exisiting partitions. 
+* SLURM: If SLURM is managed by BMC, you cant add new nodes to exisiting partitions.
+* KISS: After your configuration finished you can delete all $LOGFILE releated lines to keep Kickstart file simple.
