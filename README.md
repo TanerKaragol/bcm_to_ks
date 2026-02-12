@@ -31,7 +31,7 @@ cp /mnt/iso/images/pxeboot/vmlinuz /tftpboot/images/vmlinuz-rocky92
 cp /mnt/iso/images/pxeboot/initrd.img /tftpboot/images/initrd-rocky92.img
 ```
 
-Exporting BCM Images
+**Exporting BCM Images**
 
 Export the BCM image from the head node via NFS:
 ```bash
@@ -42,9 +42,8 @@ systemctl restart nfs-server
 ```
 ## 3. Kickstart Configuration
 
-Create /var/www/html/ks/bcm.ks. This file handles the partitioning and image cloning.
-Password Encryption
-To generate the hashed password for the Kickstart file:
+Copy bcm.ks here /var/www/html/ks/bcm.ks. Then modify it corresponding to your needs. For example disk device name, password.
+For Password Encryption: To generate the hashed password for the Kickstart file:
 ```bash
 openssl passwd -6
 ```
