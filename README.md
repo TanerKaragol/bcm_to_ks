@@ -116,6 +116,6 @@ Boot the new node with PXE boot. Select "New Node Install" from the menu.
 # Notes & Known Issues
 
 * Slurmd Service: May require a one-time manual start after the first boot.
-* Optimization: If your dont want to create separete partition for /boot, you can simplify the Kickstart and skip the sed path replacements.
+* Optimization: If you dont want to create separete partition for /boot, you can simplify the Kickstart and skip the sed path replacements.
 * SLURM: If SLURM is managed by BMC, you cant add new nodes to exisiting partitions.
 * KISS: After your configuration finished you can delete all $LOGFILE releated lines to keep Kickstart file simple.
