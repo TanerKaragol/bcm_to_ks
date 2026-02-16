@@ -1,0 +1,61 @@
+# ---------------------------------------------------------
+# HYBRID AI CONFIGURATION (Block Training / Allow Search & Citation)
+# ---------------------------------------------------------
+
+# --- GROUP 1: BLOCK AI TRAINING (The "Don't Learn From Me" List) ---
+# These bots crawl the web specifically to build and train Large Language Models.
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Anthropic-ai
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: MetaExternalAgent
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Diffbot
+Disallow: /
+
+# --- GROUP 2: ALLOW AI SEARCH & CITATION (The "Source/Reference" List) ---
+# These bots act like real-time search engines to provide links and citations to users.
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-Search
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: YouBot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# --- GROUP 3: GENERAL SEARCH ENGINES ---
+# Keep your site visible in standard search results (Google, DuckDuckGo, etc.)
+
+User-agent: *
+Allow: /
+
+# ---------------------------------------------------------
+# END OF CONFIGURATION
+# ---------------------------------------------------------
